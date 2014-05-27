@@ -5,11 +5,9 @@ Git submodules of Piston projects
 
 ## How to build Piston
 
-1. Clone the repository to your local hard drive.
-2. Open up the Terminal window and navigate to the folder.
-3. Type:
-
 ```
+git clone https://github.com/PistonDevelopers/piston-workspace.git
+cd piston-workspace
 chmod +x build.sh
 ./build.sh
 ```
