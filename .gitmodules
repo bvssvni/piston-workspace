@@ -16,3 +16,6 @@
 [submodule "rust-png"]
 	path = rust-png
 	url = https://github.com/PistonDevelopers/rust-png.git
+[submodule "piston"]
+	path = piston
+	url = https://github.com/PistonDevelopers/piston.git
