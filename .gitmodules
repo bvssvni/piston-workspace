@@ -1,0 +1,3 @@
+[submodule "rust-graphics"]
+	path = rust-graphics
+	url = https://github.com/PistonDevelopers/rust-graphics
