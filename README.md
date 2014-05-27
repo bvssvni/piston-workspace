@@ -13,3 +13,7 @@ Git submodules of Piston projects
 chmod +x build.sh
 ./build.sh
 ```
+
+## Piston '.rlib' files
+
+The Piston '.rlib' files are located in 'piston-workspace/piston/target/cpu-vendor-os/lib'.
