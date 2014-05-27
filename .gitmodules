@@ -1,3 +1,21 @@
 [submodule "rust-graphics"]
 	path = rust-graphics
 	url = https://github.com/PistonDevelopers/rust-graphics
+[submodule "rust-sdl2"]
+	path = rust-sdl2
+	url = https://github.com/AngryLawyer/rust-sdl2.git
+[submodule "glfw-rs"]
+	path = glfw-rs
+	url = https://github.com/bjz/glfw-rs.git
+[submodule "gl-rs"]
+	path = gl-rs
+	url = https://github.com/bjz/gl-rs
+[submodule "hgl-rs"]
+	path = hgl-rs
+	url = https://github.com/cmr/hgl-rs.git
+[submodule "rust-png"]
+	path = rust-png
+	url = https://github.com/PistonDevelopers/rust-png.git
+[submodule "piston"]
+	path = piston
+	url = https://github.com/PistonDevelopers/piston.git
