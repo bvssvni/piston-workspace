@@ -1,3 +1,6 @@
 [submodule "rust-graphics"]
 	path = rust-graphics
 	url = https://github.com/PistonDevelopers/rust-graphics
+[submodule "rust-sdl2"]
+	path = rust-sdl2
+	url = https://github.com/AngryLawyer/rust-sdl2.git
