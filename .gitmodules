@@ -13,3 +13,6 @@
 [submodule "hgl-rs"]
 	path = hgl-rs
 	url = https://github.com/cmr/hgl-rs.git
+[submodule "rust-png"]
+	path = rust-png
+	url = https://github.com/PistonDevelopers/rust-png.git
