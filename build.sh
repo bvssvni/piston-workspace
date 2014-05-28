@@ -5,6 +5,7 @@ GLFW_RS_RLIB=libglfw-38369174-0.1.rlib
 RUST_GRAPHICS_RLIB=libgraphics-587c2edd-0.0.rlib
 RUST_PNG_RLIB=libpng-1a4a27fd-0.1.rlib
 RUST_SDL2_RLIB=libsdl2-79c1f430-0.0.1.rlib
+PISTON_RLIB=libpiston-a1b791b5-0.0.rlib
 
 # Fetch data from submodule repositories.
 git submodule init
@@ -25,6 +26,7 @@ GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/lib/$GLFW_RS_RLIB"
 RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
 RUST_PNG_RLIB_PATH="$CURRENT_DIR/rust-png/target/$TARGET/lib/$RUST_PNG_RLIB"
 RUST_SDL2_RLIB_PATH="$CURRENT_DIR/rust-sdl2/build/lib/$RUST_SDL2_RLIB"
+PISTON_RLIB_PATH="$CURRENT_DIR/piston/target/$TARGET/lib/$PISTON_RLIB"
 
 # ==== BUILDING ====
 
@@ -80,4 +82,13 @@ cd piston
 make clean
 make
 cd $CURRENT_DIR
+
+# Add symlinks to piston-symlinks.
+mkdir -p piston-symlinks
+ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
+ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
+ln -s $RUST_GRAPHICS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_GRAPHICS_RLIB"
+ln -s $RUST_PNG_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_PNG_RLIB"
+ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_RLIB"
+ln -s $PISTON_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
 
