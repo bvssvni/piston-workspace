@@ -7,10 +7,6 @@ RUST_PNG_RLIB=libpng-1a4a27fd-0.1.rlib
 RUST_SDL2_RLIB=libsdl2-79c1f430-0.0.1.rlib
 PISTON_RLIB=libpiston-a1b791b5-0.0.rlib
 
-# Fetch data from submodule repositories.
-git submodule init
-git submodule update
-
 # Get current target platform.
 TARGET=$(rustc --version | awk "/host:/ { print \$2 }")
 echo $TARGET
