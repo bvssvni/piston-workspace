@@ -12,6 +12,8 @@ chmod +x build.sh
 ./build.sh
 ```
 
+The script will spend 3-8 minutes to build all the libraries.
+
 ## Piston symlink files
 
 A symlink file allows you to rebuild Piston without needing to copy the '.rlib' files each time.  
