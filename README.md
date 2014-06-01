@@ -30,6 +30,8 @@ To tell the Rust compiler to look for the Piston rlib file, add `extern crate pi
 4. copy symlinks from 'piston-symlinks/' to the projects 'target/cpu-vendor-os/lib/' folder
 5. add `extern crate piston;`, `extern crate graphics;` etc. to your source at top level
 
+For more information about how to use Piston, see the [Piston tutorial](https://github.com/PistonDevelopers/piston/blob/master/learning%20materials/tutorial.md)
+
 ## How to upgrade to Rust master
 
 This information is for PistonDevelopers:
