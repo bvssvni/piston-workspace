@@ -20,6 +20,14 @@ These can be copied and put in the 'target/cpu-vendor-os/lib/' folder in your pr
 
 To tell the Rust compiler to look for the Piston rlib file, add `extern crate piston;` to your source.  
 
+## How to setup a new project
+
+1. copy 'Makefile' from https://github.com/bvssvni/rust-empty to a new empty folder
+2. open up the Terminal window and navigate to the project folder
+3. type make run to create "hello world!" example
+4. copy symlinks from 'piston-symlinks/' to the projects 'target/cpu-vendor-os/lib/' folder
+5. add extern crate piston;, extern crate graphics; etc. to your source at top level
+
 ## How to upgrade to Rust master
 
 This information is for PistonDevelopers:
