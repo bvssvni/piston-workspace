@@ -32,6 +32,17 @@ To tell the Rust compiler to look for the Piston rlib file, add `extern crate pi
 
 For more information about how to use Piston, see the [Piston tutorial](https://github.com/PistonDevelopers/piston/blob/master/learning%20materials/tutorial.md)
 
+## How to generate documentation
+
+You can generate the documentation of all the projects at once:
+
+```
+chmod +x docs.sh
+./docs.sh
+```
+
+The generated documentation is located in the 'docs/' folder.
+
 ## How to upgrade to Rust master
 
 This information is for PistonDevelopers:
