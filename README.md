@@ -12,9 +12,13 @@ chmod +x build.sh
 ./build.sh
 ```
 
-## Piston '.rlib' files
+## Piston symlink files
 
-The Piston '.rlib' files are located in 'piston-workspace/piston/target/cpu-vendor-os/lib'.
+A symlink file allows you to rebuild Piston without needing to copy the '.rlib' files each time.  
+When you have built Piston, the symlinks should be located in the folder 'piston-symlinks/'.  
+These can be copied and put in the 'target/cpu-vendor-os/lib/' folder in your project.  
+
+To tell the Rust compiler to look for the Piston rlib file, add `extern crate piston;` to your source.  
 
 ## How to upgrade to Rust master
 
