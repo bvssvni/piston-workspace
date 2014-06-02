@@ -74,6 +74,7 @@ ln -s $RUST_GRAPHICS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_GRA
 ln -s $RUST_PNG_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_PNG_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_RLIB"
 
+echo "--- Building piston"
 cd piston
 make clean
 make
