@@ -7,6 +7,8 @@ Piston is a user friendly open source game engine written in Rust,
 started by Sven Nilsen (bvssvni).
 The project is still in the early stages and under heavy development.
 
+http://pistondevelopers.github.io/
+
 ## How to build Piston
 
 ```
