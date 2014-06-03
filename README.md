@@ -3,6 +3,10 @@ piston-workspace
 
 Git submodules of Piston projects
 
+Piston is a user friendly open source game engine written in Rust,
+started by Sven Nilsen (bvssvni).
+The project is still in the early stages and under heavy development.
+
 ## How to build Piston
 
 ```
