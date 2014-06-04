@@ -13,6 +13,11 @@ git checkout master
 git pull origin master
 cd $CURRENT_DIR
 
+cd rust-image
+git checkout master
+git pull origin master
+cd $CURRENT_DIR
+
 cd rust-png
 git checkout master
 git pull origin master
