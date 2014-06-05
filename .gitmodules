@@ -23,3 +23,6 @@
 [submodule "rust-image"]
 	path = rust-image
 	url = https://github.com/PistonDevelopers/rust-image.git
+[submodule "rust-sdl2_mixer"]
+	path = rust-sdl2_mixer
+	url = https://github.com/PistonDevelopers/rust-sdl2_mixer.git
