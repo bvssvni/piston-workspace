@@ -35,6 +35,12 @@ rustdoc src/sdl2/lib.rs
 cp -a doc ../docs/rust-sdl2
 cd $CURRENT_DIR
 
+echo "--- rust-sdl2_mixer"
+cd rust-sdl2_mixer
+make doc
+cp -a doc ../docs/rust-sdl2_mixer
+cd $CURRENT_DIR
+
 echo "--- glfw-rs"
 cd glfw-rs
 make doc

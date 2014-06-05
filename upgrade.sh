@@ -33,6 +33,11 @@ git checkout master
 git pull origin master
 cd $CURRENT_DIR
 
+cd rust-sdl2_mixer
+git checkout master
+git pull origin master
+cd $CURRENT_DIR
+
 cd hgl-rs
 git checkout master
 git pull origin master

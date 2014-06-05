@@ -6,6 +6,7 @@ RUST_GRAPHICS_RLIB=libgraphics-587c2edd-0.0.rlib
 RUST_IMAGE_RLIB=libimage-42438c15-0.0.rlib
 RUST_PNG_RLIB=libpng-1a4a27fd-0.1.rlib
 RUST_SDL2_RLIB=libsdl2-79c1f430-0.0.1.rlib
+RUST_SDL2_MIXER_RLIB=libsdl2_mixer-1aa14961-0.1.rlib
 PISTON_RLIB=libpiston-a1b791b5-0.0.rlib
 
 # Get current target platform.
@@ -24,6 +25,7 @@ RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRA
 RUST_IMAGE_RLIB_PATH="$CURRENT_DIR/rust-image/target/$TARGET/lib/$RUST_IMAGE_RLIB"
 RUST_PNG_RLIB_PATH="$CURRENT_DIR/rust-png/target/$TARGET/lib/$RUST_PNG_RLIB"
 RUST_SDL2_RLIB_PATH="$CURRENT_DIR/rust-sdl2/build/lib/$RUST_SDL2_RLIB"
+RUST_SDL2_MIXER_RLIB_PATH="$CURRENT_DIR/rust-sdl2_mixer/target/$TARGET/lib/$RUST_SDL2_MIXER_RLIB"
 PISTON_RLIB_PATH="$CURRENT_DIR/piston/target/$TARGET/lib/$PISTON_RLIB"
 
 # ==== BUILDING ====
@@ -64,6 +66,16 @@ make clean
 make
 cd $CURRENT_DIR
 
+# Add symlinks to rust-sdl2_mixer
+mkdir -p rust-sdl2_mixer/target/$TARGET/lib/
+ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/rust-sdl2_mixer/target/$TARGET/lib/$RUST_SDL2_RLIB"
+
+echo "--- Building rust-sdl2_mixer"
+cd rust-sdl2_mixer
+make clean
+make
+cd $CURRENT_DIR
+
 # Add symlinks to hgl-rs.
 mkdir -p hgl-rs/target/$TARGET/lib/
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/hgl-rs/target/$TARGET/lib/$GL_RS_RLIB"
@@ -81,6 +93,7 @@ ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$GLFW_RS_RLIB"
 ln -s $RUST_GRAPHICS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
 ln -s $RUST_PNG_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_PNG_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_RLIB"
+ln -s $RUST_SDL2_MIXER_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_MIXER_RLIB"
 
 echo "--- Building piston"
 cd piston
@@ -95,5 +108,6 @@ ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
 ln -s $RUST_GRAPHICS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_GRAPHICS_RLIB"
 ln -s $RUST_PNG_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_PNG_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_RLIB"
+ln -s $RUST_SDL2_MIXER_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_MIXER_RLIB"
 ln -s $PISTON_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
 
