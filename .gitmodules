@@ -7,7 +7,6 @@
 [submodule "glfw-rs"]
 	path = glfw-rs
 	url = https://github.com/PistonDevelopers/glfw-rs.git
-    branch = fix_20140602
 [submodule "gl-rs"]
 	path = gl-rs
 	url = https://github.com/PistonDevelopers/gl-rs
