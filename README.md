@@ -11,6 +11,14 @@ http://pistondevelopers.github.io/
 
 ## How to build Piston
 
+Install the developer libraries for:
+
+* [SDL2](http://www.libsdl.org/download-2.0.php)
+* [SDL2_mixer](http://www.libsdl.org/projects/SDL_mixer/)
+* [GLFW 3.0+](http://www.glfw.org/)
+
+Open the Terminal window and type:
+
 ```
 git clone --recursive https://github.com/PistonDevelopers/piston-workspace.git
 cd piston-workspace
