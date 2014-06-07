@@ -15,7 +15,7 @@ Install the developer libraries for:
 
 * [SDL2](http://www.libsdl.org/download-2.0.php)
 * [SDL2_mixer](http://www.libsdl.org/projects/SDL_mixer/)
-* [GLFW 3.0+](http://www.glfw.org/)
+* [GLFW 3.x](http://www.glfw.org/)
 
 Open the Terminal window and type:
 
