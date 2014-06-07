@@ -21,12 +21,6 @@ git checkout master
 git pull origin master
 cd $CURRENT_DIR
 
-echo "--- updating rust-png"
-cd rust-png
-git checkout master
-git pull origin master
-cd $CURRENT_DIR
-
 echo "--- updating glfw-rs"
 cd glfw-rs
 git checkout master
