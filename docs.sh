@@ -23,12 +23,6 @@ make doc
 cp -a doc ../docs/rust-image
 cd $CURRENT_DIR
 
-echo "--- rust-png"
-cd rust-png
-make doc
-cp -a doc ../docs/rust-png
-cd $CURRENT_DIR
-
 echo "--- rust-sdl2"
 cd rust-sdl2
 rustdoc src/sdl2/lib.rs
