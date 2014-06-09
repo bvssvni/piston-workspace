@@ -17,6 +17,9 @@ Install the developer libraries for:
 * [SDL2_mixer](http://www.libsdl.org/projects/SDL_mixer/)
 * [GLFW 3.x](http://www.glfw.org/)
 
+On OS X, you need to download the `.dmg` for `SDL2` and `SDL2_mixer` 
+and copy the `.framework` file to `/Library/Frameworks`.
+
 Open the Terminal window and type:
 
 ```
