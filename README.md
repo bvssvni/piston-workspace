@@ -21,6 +21,7 @@ Install the developer libraries for:
 
 On OS X, you need to download the `.dmg` for `SDL2` and `SDL2_mixer` 
 and copy the `.framework` file to `/Library/Frameworks`.
+For more information, see https://github.com/PistonDevelopers/piston-workspace/issues/63
 
 Open the Terminal window and type:
 
