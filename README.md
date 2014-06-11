@@ -1,6 +1,8 @@
 piston-workspace
 ================
 
+[![Build Status](https://travis-ci.org/PistonDevelopers/piston-workspace.svg)](https://travis-ci.org/PistonDevelopers/piston-workspace)
+
 Git submodules of Piston projects
 
 Piston is a user friendly open source game engine written in Rust,
