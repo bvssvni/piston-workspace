@@ -31,6 +31,14 @@ install:
   - cd SDL2_mixer-*
   - ./configure && make && sudo make install
   - cd -
+  
+  ## Installing SDL2-TTF
+  - wget -q http://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz
+  - tar xf SDL2-*.tar.gz
+  - cd SDL2_ttf-*
+  - ./configure && make && sudo make install
+  - cd -
+
 script:
   - chmod +x build.sh
   - rustc -v
