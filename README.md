@@ -17,9 +17,10 @@ Install the developer libraries for:
 
 * [SDL2](http://www.libsdl.org/download-2.0.php)
 * [SDL2_mixer](http://www.libsdl.org/projects/SDL_mixer/)
+* [SDL2_mixer](http://www.libsdl.org/projects/SDL_ttf/)
 * [GLFW 3.x](http://www.glfw.org/)
 
-On OS X, you need to download the `.dmg` for `SDL2` and `SDL2_mixer` 
+On OS X, you need to download the `.dmg` for `SDL2`, `SDL2_mixer` and `SDL2_ttf`
 and copy the `.framework` file to `/Library/Frameworks`.
 For more information, see https://github.com/PistonDevelopers/piston-workspace/issues/63
 
