@@ -39,6 +39,12 @@ git checkout master
 git pull origin master
 cd $CURRENT_DIR
 
+echo "--- updating rust-sdl2_ttf"
+cd rust-sdl2_ttf
+git checkout master
+git pull origin master
+cd $CURRENT_DIR
+
 echo "--- updating hgl-rs"
 cd hgl-rs
 git checkout master
