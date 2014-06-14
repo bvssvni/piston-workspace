@@ -22,3 +22,6 @@
 [submodule "rust-sdl2_mixer"]
 	path = rust-sdl2_mixer
 	url = https://github.com/PistonDevelopers/rust-sdl2_mixer.git
+[submodule "rust-sdl2_ttf"]
+	path = rust-sdl2_ttf
+	url = https://github.com/PistonDevelopers/rust-sdl2_ttf.git

@@ -35,6 +35,12 @@ make doc
 cp -a doc ../docs/rust-sdl2_mixer
 cd $CURRENT_DIR
 
+echo "--- rust-sdl2_ttf"
+cd rust-sdl2_ttf
+make doc
+cp -a doc ../docs/rust-sdl2_ttf
+cd $CURRENT_DIR
+
 echo "--- glfw-rs"
 cd glfw-rs
 make doc
