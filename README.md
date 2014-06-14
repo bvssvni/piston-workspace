@@ -69,8 +69,8 @@ The generated documentation is located in the 'docs/' folder.
 This information is for PistonDevelopers:
 
 ```
-chmod +x update.sh
-./update.sh
+chmod +x upgrade.sh
+./upgrade.sh
 ```
 
 If you find Piston-Workspace out of date, run this script and do a build.  
