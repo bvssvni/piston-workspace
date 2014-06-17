@@ -1,5 +1,10 @@
 #!/bin/bash
 
+MAKE=make
+if [ "$OS" == "Windows_NT" ]; then
+	MAKE=mingw32-make
+fi
+
 CGMATH_RS_RLIB=libcgmath-13b4a6e6-0.1.rlib
 GL_RS_RLIB=libgl-8febb75e-0.1.rlib
 GLFW_RS_RLIB=libglfw-38369174-0.1.rlib
@@ -34,38 +39,38 @@ PISTON_RLIB_PATH="$CURRENT_DIR/piston/target/$TARGET/lib/$PISTON_RLIB"
 
 echo "--- Building rust-graphics"
 cd rust-graphics
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 echo "--- Building rust-image"
 cd rust-image
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 echo "--- Building cgmath-rs"
 cd cgmath-rs
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 echo "--- Building glfw-rs"
 cd glfw-rs
-make clean
-make link && make -f rust-empty.mk
+$MAKE clean
+$MAKE link && $MAKE -f rust-empty.mk
 cd $CURRENT_DIR
 
 echo "--- Building gl-rs"
 cd gl-rs
-make -f rust-empty.mk clean
-make gen-lib && make -f rust-empty.mk
+$MAKE -f rust-empty.mk clean
+$MAKE gen-lib && $MAKE -f rust-empty.mk
 cd $CURRENT_DIR
 
 echo "--- Building rust-sdl2"
 cd rust-sdl2
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 # Add symlinks to rust-sdl2_mixer
@@ -75,8 +80,8 @@ ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/rust-sdl2_mixer/target/$TARGET/lib/$RUS
 
 echo "--- Building rust-sdl2_mixer"
 cd rust-sdl2_mixer
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 # Add symlinks to rust-sdl2_ttf
@@ -86,8 +91,8 @@ ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/rust-sdl2_ttf/target/$TARGET/lib/$RUST_
 
 echo "--- Building rust-sdl2_ttf"
 cd rust-sdl2_ttf
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 # Add symlinks to hgl-rs.
@@ -97,8 +102,8 @@ ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/hgl-rs/target/$TARGET/lib/$GL_RS_RLIB"
 
 echo "--- Building hgl-rs"
 cd hgl-rs
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 # Add symlinks to piston.
@@ -120,8 +125,8 @@ ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL
 
 echo "--- Building piston"
 cd piston
-make clean
-make
+$MAKE clean
+$MAKE
 cd $CURRENT_DIR
 
 # Add symlinks to piston-symlinks.
