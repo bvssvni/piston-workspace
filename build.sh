@@ -19,7 +19,7 @@ echo $CURRENT_DIR
 
 # ==== PATHS ====
 
-GL_RS_RLIB_PATH="$CURRENT_DIR/gl-rs/lib/$GL_RS_RLIB"
+GL_RS_RLIB_PATH="$CURRENT_DIR/gl-rs/target/$TARGET/lib/$GL_RS_RLIB"
 GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/lib/$GLFW_RS_RLIB"
 RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
 RUST_IMAGE_RLIB_PATH="$CURRENT_DIR/rust-image/target/$TARGET/lib/$RUST_IMAGE_RLIB"
@@ -50,8 +50,8 @@ cd $CURRENT_DIR
 
 echo "--- Building gl-rs"
 cd gl-rs
-make clean
-make
+make -f rust-empty.mk clean
+make gen-lib && make -f rust-empty.mk
 cd $CURRENT_DIR
 
 echo "--- Building rust-sdl2"
@@ -62,6 +62,7 @@ cd $CURRENT_DIR
 
 # Add symlinks to rust-sdl2_mixer
 mkdir -p rust-sdl2_mixer/target/$TARGET/lib/
+rm -f "$CURRENT_DIR/rust-sdl2_mixer/target/$TARGET/lib/$RUST_SDL2_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/rust-sdl2_mixer/target/$TARGET/lib/$RUST_SDL2_RLIB"
 
 echo "--- Building rust-sdl2_mixer"
@@ -72,6 +73,7 @@ cd $CURRENT_DIR
 
 # Add symlinks to rust-sdl2_ttf
 mkdir -p rust-sdl2_ttf/target/$TARGET/lib/
+rm -f "$CURRENT_DIR/rust-sdl2_ttf/target/$TARGET/lib/$RUST_SDL2_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/rust-sdl2_ttf/target/$TARGET/lib/$RUST_SDL2_RLIB"
 
 echo "--- Building rust-sdl2_ttf"
@@ -82,6 +84,7 @@ cd $CURRENT_DIR
 
 # Add symlinks to hgl-rs.
 mkdir -p hgl-rs/target/$TARGET/lib/
+rm -f "$CURRENT_DIR/hgl-rs/target/$TARGET/lib/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/hgl-rs/target/$TARGET/lib/$GL_RS_RLIB"
 
 echo "--- Building hgl-rs"
@@ -92,12 +95,19 @@ cd $CURRENT_DIR
 
 # Add symlinks to piston.
 mkdir -p piston/target/$TARGET/lib
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$GL_RS_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$GLFW_RS_RLIB"
 ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$GLFW_RS_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
 ln -s $RUST_GRAPHICS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_IMAGE_RLIB"
 ln -s $RUST_IMAGE_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_IMAGE_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_MIXER_RLIB"
 ln -s $RUST_SDL2_MIXER_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_MIXER_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_TTF_RLIB"
 ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL2_TTF_RLIB"
 
 echo "--- Building piston"
@@ -108,12 +118,20 @@ cd $CURRENT_DIR
 
 # Add symlinks to piston-symlinks.
 mkdir -p piston-symlinks
+rm -f "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
 ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$RUST_GRAPHICS_RLIB"
 ln -s $RUST_GRAPHICS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_GRAPHICS_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$RUST_IMAGE_RLIB"
 ln -s $RUST_IMAGE_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_IMAGE_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_RLIB"
 ln -s $RUST_SDL2_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_MIXER_RLIB"
 ln -s $RUST_SDL2_MIXER_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_MIXER_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_TTF_RLIB"
 ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_TTF_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
 ln -s $PISTON_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
 
