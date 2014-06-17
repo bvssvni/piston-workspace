@@ -20,7 +20,7 @@ echo $CURRENT_DIR
 # ==== PATHS ====
 
 GL_RS_RLIB_PATH="$CURRENT_DIR/gl-rs/target/$TARGET/lib/$GL_RS_RLIB"
-GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/lib/$GLFW_RS_RLIB"
+GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/target/$TARGET/lib/$GLFW_RS_RLIB"
 RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
 RUST_IMAGE_RLIB_PATH="$CURRENT_DIR/rust-image/target/$TARGET/lib/$RUST_IMAGE_RLIB"
 RUST_SDL2_RLIB_PATH="$CURRENT_DIR/rust-sdl2/build/lib/$RUST_SDL2_RLIB"
@@ -45,7 +45,7 @@ cd $CURRENT_DIR
 echo "--- Building glfw-rs"
 cd glfw-rs
 make clean
-make
+make link && make -f rust-empty.mk
 cd $CURRENT_DIR
 
 echo "--- Building gl-rs"
