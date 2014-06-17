@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CGMATH_RS_RLIB=libcgmath-13b4a6e6-0.1.rlib
 GL_RS_RLIB=libgl-8febb75e-0.1.rlib
 GLFW_RS_RLIB=libglfw-38369174-0.1.rlib
 RUST_GRAPHICS_RLIB=libgraphics-587c2edd-0.0.rlib
@@ -19,6 +20,7 @@ echo $CURRENT_DIR
 
 # ==== PATHS ====
 
+CGMATH_RS_RLIB_PATH="$CURRENT_DIR/cgmath-rs/lib/$CGMATH_RS_RLIB"
 GL_RS_RLIB_PATH="$CURRENT_DIR/gl-rs/target/$TARGET/lib/$GL_RS_RLIB"
 GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/target/$TARGET/lib/$GLFW_RS_RLIB"
 RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
@@ -38,6 +40,12 @@ cd $CURRENT_DIR
 
 echo "--- Building rust-image"
 cd rust-image
+make clean
+make
+cd $CURRENT_DIR
+
+echo "--- Building cgmath-rs"
+cd cgmath-rs
 make clean
 make
 cd $CURRENT_DIR
@@ -118,6 +126,8 @@ cd $CURRENT_DIR
 
 # Add symlinks to piston-symlinks.
 mkdir -p piston-symlinks
+rm -f "$CURRENT_DIR/piston-symlinks/$CGMATH_RS_RLIB"
+ln -s $CGMATH_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$CGMATH_RS_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
