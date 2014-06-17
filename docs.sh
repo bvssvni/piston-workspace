@@ -41,6 +41,12 @@ make doc
 cp -a doc ../docs/rust-sdl2_ttf
 cd $CURRENT_DIR
 
+echo "--- cgmath-rs"
+cd cgmath-rs
+make doc
+cp -a doc ../docs/cgmath-rs
+cd $CURRENT_DIR
+
 echo "--- glfw-rs"
 cd glfw-rs
 make doc
