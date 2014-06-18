@@ -42,4 +42,4 @@ install:
 script:
   - chmod +x build.sh
   - rustc -v
-  - ./build.sh
+  - make

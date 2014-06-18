@@ -21,39 +21,48 @@ rust_sdl2_ttf=$(rust_sdl2_ttf_path)/target/$(target)/lib/libsdl2_ttf-efbbd9b9-0.
 cgmath_rs=$(cgmath_rs_path)/lib/libcgmath-13b4a6e6-0.1.rlib
 piston=$(piston_path)/target/$(target)/lib/libpiston-a1b791b5-0.0.rlib
 
-all: piston
+all: piston;
+	@echo "--- Creating symlink path ---"
 	mkdir -p $(symlinks_path)
-	rm $(symlinks_path)/*
+	@echo "--- Removing symlinks if they exist ---"
+	rm -f $(symlinks_path)/*
+	@echo "--- Linking libs ---"
 	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(piston) $(symlinks_path)
 
 gl_rs: $(gl_rs)
 
 $(gl_rs):
+	@echo "--- Building gl-rs ---"
 	cd $(gl_rs_path); $(MAKE)
 
 glfw_rs: $(glfw_rs)
 
 $(glfw_rs):
+	@echo "--- Building glfw-rs ---"
 	cd $(glfw_rs_path); $(MAKE)
 
 rust_graphics: $(rust_graphics)
 
 $(rust_graphics):
+	@echo "--- Building rust-graphics ---"
 	cd $(rust_graphics_path); $(MAKE)
 
 rust_image: $(rust_image)
 
 $(rust_image):
+	@echo "--- Building rust-image ---"
 	cd $(rust_image_path); $(MAKE)
 
 rust_sdl2: $(rust_sdl2)
 
 $(rust_sdl2):
+	@echo "--- Building rust-sld2 ---"
 	cd $(rust_sdl2_path); $(MAKE)
 
 rust_sdl2_mixer: $(rust_sdl2_mixer)
 
-$(rust_sdl2_mixer): $(rust_sdl2)
+$(rust_sdl2_mixer): $(rust_sdl2);
+	@echo "--- Building rust-sld2-mixer ---"
 	rm -f $(rust_sdl2_mixer_path)/target/$(target)/lib/*.rlib
 	mkdir -p $(rust_sdl2_mixer_path)/target/$(target)/lib/
 	ln -s $(rust_sdl2) $(rust_sdl2_mixer_path)/target/$(target)/lib/
@@ -61,7 +70,8 @@ $(rust_sdl2_mixer): $(rust_sdl2)
 
 rust_sdl2_ttf: $(rust_sdl2_ttf)
 
-$(rust_sdl2_ttf) : $(rust_sdl2)
+$(rust_sdl2_ttf) : $(rust_sdl2);
+	@echo "--- Building rust-sld2-ttf ---"
 	rm -f $(rust_sdl2_ttf_path)/target/$(target)/lib/*.rlib
 	mkdir -p $(rust_sdl2_ttf_path)/target/$(target)/lib/
 	ln -s $(rust_sdl2) $(rust_sdl2_ttf_path)/target/$(target)/lib/
@@ -70,17 +80,20 @@ $(rust_sdl2_ttf) : $(rust_sdl2)
 cgmath_rs: $(cgmath_rs)
 
 $(cgmath_rs):
+	@echo "--- Building cgmath-rs ---"
 	cd $(cgmath_rs_path); $(MAKE)
 
 piston: $(piston)
 
-$(piston): gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf
+$(piston): gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf;
+	@echo "--- Building piston ---"
 	rm -f $(piston_path)/target/$(target)/lib/*.rlib
 	mkdir -p $(piston_path)/target/$(target)/lib/
 	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(piston_path)/target/$(target)/lib/
 	cd $(piston_path); $(MAKE) clean; $(MAKE) lib
 
 clean:
+	@echo "--- cleaning up ---"
 	cd $(gl_rs_path); $(MAKE) clean; cd -;
 	cd $(glfw_rs_path); $(MAKE) clean; cd -;
 	cd $(rust_graphics_path); $(MAKE) clean; cd -;
