@@ -57,7 +57,7 @@ rust_sdl2: $(rust_sdl2)
 
 $(rust_sdl2):
 	@echo "--- Building rust-sld2 ---"
-	cd $(rust_sdl2_path); $(MAKE)
+	cd $(rust_sdl2_path); $(MAKE) gen-lib && $(MAKE) -f rust-empty.mk
 
 rust_sdl2_mixer: $(rust_sdl2_mixer)
 
