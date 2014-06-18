@@ -70,7 +70,8 @@ cd $CURRENT_DIR
 echo "--- Building rust-sdl2"
 cd rust-sdl2
 $MAKE clean
-$MAKE
+$MAKE gen-lib
+$MAKE -f rust-empty.mk
 cd $CURRENT_DIR
 
 # Add symlinks to rust-sdl2_mixer
