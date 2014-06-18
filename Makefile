@@ -7,6 +7,7 @@ rust_image_path=$(shell pwd)/rust-image
 rust_sdl2_path=$(shell pwd)/rust-sdl2
 rust_sdl2_mixer_path=$(shell pwd)/rust-sdl2_mixer
 rust_sdl2_ttf_path=$(shell pwd)/rust-sdl2_ttf
+cgmath_rs_path=$(shell pwd)/cgmath-rs
 piston_path=$(shell pwd)/piston
 symlinks_path=$(shell pwd)/piston-symlinks
 
@@ -17,12 +18,13 @@ rust_image=$(rust_image_path)/target/$(target)/lib/libimage-42438c15-0.0.rlib
 rust_sdl2=$(rust_sdl2_path)/build/lib/libsdl2-79c1f430-0.0.1.rlib
 rust_sdl2_mixer=$(rust_sdl2_mixer_path)/target/$(target)/lib/libsdl2_mixer-1aa14961-0.1.rlib
 rust_sdl2_ttf=$(rust_sdl2_ttf_path)/target/$(target)/lib/libsdl2_ttf-efbbd9b9-0.1.rlib
+cgmath_rs=$(cgmath_rs_path)/lib/libcgmath-13b4a6e6-0.1.rlib
 piston=$(piston_path)/target/$(target)/lib/libpiston-a1b791b5-0.0.rlib
 
 all: piston
 	mkdir -p $(symlinks_path)
 	rm $(symlinks_path)/*
-	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(piston) $(symlinks_path)
+	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(piston) $(symlinks_path)
 
 gl_rs: $(gl_rs)
 
@@ -65,12 +67,17 @@ $(rust_sdl2_ttf) : $(rust_sdl2)
 	ln -s $(rust_sdl2) $(rust_sdl2_ttf_path)/target/$(target)/lib/
 	cd $(rust_sdl2_ttf_path); $(MAKE)
 
+cgmath_rs: $(cgmath_rs)
+
+$(cgmath_rs):
+	cd $(cgmath_rs_path); $(MAKE)
+
 piston: $(piston)
 
 $(piston): gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf
 	rm -f $(piston_path)/target/$(target)/lib/*.rlib
 	mkdir -p $(piston_path)/target/$(target)/lib/
-	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(piston_path)/target/$(target)/lib/
+	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(piston_path)/target/$(target)/lib/
 	cd $(piston_path); $(MAKE) clean; $(MAKE) lib
 
 clean:
@@ -81,6 +88,7 @@ clean:
 	cd $(rust_sdl2_path); $(MAKE) clean; cd -;
 	cd $(rust_sdl2_mixer_path); $(MAKE) clean; cd -;
 	cd $(rust_sdl2_ttf_path); $(MAKE) clean; cd -;
+	cd $(cgmath_rs_path); $(MAKE) clean; cd -;
 	cd $(piston_path); $(MAKE) clean; cd -;
 
-.PHONY: all gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf piston clean
+.PHONY: all gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf cgmath_rs piston clean
