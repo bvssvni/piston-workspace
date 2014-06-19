@@ -28,3 +28,6 @@
 [submodule "cgmath-rs"]
 	path = cgmath-rs
 	url = https://github.com/PistonDevelopers/cgmath-rs.git
+[submodule "rust-portaudio"]
+	path = rust-portaudio
+	url = https://github.com/PistonDevelopers/rust-portaudio.git
