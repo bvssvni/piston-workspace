@@ -65,4 +65,8 @@ make doc
 cp -a doc ../docs/hgl-rs
 cd $CURRENT_DIR
 
-
+echo "--- rust-portaudio"
+cd rust-portaudio
+make doc
+cp -a doc ../docs/rust-portaudio
+cd $CURRENT_DIR

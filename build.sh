@@ -6,6 +6,7 @@ if [ "$OS" == "Windows_NT" ]; then
 fi
 
 CGMATH_RS_RLIB=libcgmath-13b4a6e6-0.1.rlib
+PISTON_RLIB=libpiston-a1b791b5-0.0.rlib
 GL_RS_RLIB=libgl-8febb75e-0.1.rlib
 GLFW_RS_RLIB=libglfw-38369174-0.1.rlib
 RUST_GRAPHICS_RLIB=libgraphics-587c2edd-0.0.rlib
@@ -13,7 +14,7 @@ RUST_IMAGE_RLIB=libimage-42438c15-0.0.rlib
 RUST_SDL2_RLIB=libsdl2-79c1f430-0.0.1.rlib
 RUST_SDL2_MIXER_RLIB=libsdl2_mixer-1aa14961-0.1.rlib
 RUST_SDL2_TTF_RLIB=libsdl2_ttf-efbbd9b9-0.1.rlib
-PISTON_RLIB=libpiston-a1b791b5-0.0.rlib
+RUST_PORTAUDIO_RLIB=libportaudio-896aa06e-0.1.rlib
 
 # Get current target platform.
 TARGET=$(rustc --version | awk "/host:/ { print \$2 }")
@@ -26,6 +27,7 @@ echo $CURRENT_DIR
 # ==== PATHS ====
 
 CGMATH_RS_RLIB_PATH="$CURRENT_DIR/cgmath-rs/lib/$CGMATH_RS_RLIB"
+RUST_PORTAUDIO_RLIB_PATH="$CURRENT_DIR/rust-portaudio/lib/$RUST_PORTAUDIO_RLIB"
 GL_RS_RLIB_PATH="$CURRENT_DIR/gl-rs/target/$TARGET/lib/$GL_RS_RLIB"
 GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/target/$TARGET/lib/$GLFW_RS_RLIB"
 RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
@@ -51,6 +53,12 @@ cd $CURRENT_DIR
 
 echo "--- Building cgmath-rs"
 cd cgmath-rs
+$MAKE clean
+$MAKE
+cd $CURRENT_DIR
+
+echo "--- Building rust-portaudio"
+cd rust-portaudio
 $MAKE clean
 $MAKE
 cd $CURRENT_DIR
@@ -109,6 +117,10 @@ cd $CURRENT_DIR
 
 # Add symlinks to piston.
 mkdir -p piston/target/$TARGET/lib
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$CGMATH_RS_RLIB"
+ln -s $CGMATH_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$CGMATH_RS_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_PORTAUDIO_RLIB"
+ln -s $RUST_PORTAUDIO_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_PORTAUDIO_RLIB"
 rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$GL_RS_RLIB"
 rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$GLFW_RS_RLIB"
@@ -134,6 +146,8 @@ cd $CURRENT_DIR
 mkdir -p piston-symlinks
 rm -f "$CURRENT_DIR/piston-symlinks/$CGMATH_RS_RLIB"
 ln -s $CGMATH_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$CGMATH_RS_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$RUST_PORTAUDIO_RLIB"
+ln -s $RUST_PORTAUDIO_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_PORTAUDIO_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
@@ -150,4 +164,3 @@ rm -f "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_TTF_RLIB"
 ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_TTF_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
 ln -s $PISTON_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
-

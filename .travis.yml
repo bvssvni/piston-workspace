@@ -4,14 +4,24 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y cmake libXxf86vm-dev libxml2
 install:
-  ## Install GLFW
+  ## Installing GLFW
   - git clone https://github.com/glfw/glfw.git
   - cd glfw
   - git checkout 3.0.3
   - cmake -DCMAKE_C_FLAGS=-fPIC -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF .
   - make && sudo make install
   - cd -
-
+  
+  ## Installing PortAudio
+  - curl -O http://www.portaudio.com/archives/pa_stable_v19_20140130.tgz
+  - tar -zxvf pa_stable_v19_*.tgz
+  - cd portaudio
+  - ./configure
+  - make
+  - sudo make install
+  - sudo ldconfig
+  - cd -
+  
   ## Installing Rust
   - curl -O http://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
   - tar xfz rust-nightly-x86_64-unknown-linux-gnu.tar.gz
@@ -42,4 +52,4 @@ install:
 script:
   - chmod +x build.sh
   - rustc -v
-  - make
+  - ./build.sh

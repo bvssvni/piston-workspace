@@ -9,6 +9,12 @@ git checkout master
 git pull origin master
 cd $CURRENT_DIR
 
+echo "--- updating rust-portaudio"
+cd rust-portaudio
+git checkout master
+git pull origin master
+cd $CURRENT_DIR
+
 echo "--- updating gl-rs"
 cd gl-rs
 git checkout master
