@@ -12,15 +12,15 @@ rust_portaudio_path=$(shell pwd)/rust-portaudio
 piston_path=$(shell pwd)/piston
 symlinks_path=$(shell pwd)/piston-symlinks
 
-gl_rs=$(gl_rs_path)/lib/libgl-8febb75e-0.1.rlib
-glfw_rs=$(glfw_rs_path)/lib/libglfw-38369174-0.1.rlib
+gl_rs=$(gl_rs_path)/target/$(target)/lib/libgl-8febb75e-0.1.rlib
+glfw_rs=$(glfw_rs_path)/target/$(target)/lib/libglfw-38369174-0.1.rlib
 rust_graphics=$(rust_graphics_path)/target/$(target)/lib/libgraphics-587c2edd-0.0.rlib
 rust_image=$(rust_image_path)/target/$(target)/lib/libimage-42438c15-0.0.rlib
-rust_sdl2=$(rust_sdl2_path)/build/lib/libsdl2-79c1f430-0.0.1.rlib
+rust_sdl2=$(rust_sdl2_path)/target/$(target)/lib/libsdl2-79c1f430-0.0.1.rlib
 rust_sdl2_mixer=$(rust_sdl2_mixer_path)/target/$(target)/lib/libsdl2_mixer-1aa14961-0.1.rlib
 rust_sdl2_ttf=$(rust_sdl2_ttf_path)/target/$(target)/lib/libsdl2_ttf-efbbd9b9-0.1.rlib
 cgmath_rs=$(cgmath_rs_path)/lib/libcgmath-13b4a6e6-0.1.rlib
-rust_portaudio=$(rust_portaudio_path)/lib/libportaudio-896aa06e-0.1.rlib
+rust_portaudio=$(rust_portaudio_path)/target/$(target)/lib/libportaudio-896aa06e-0.1.rlib
 piston=$(piston_path)/target/$(target)/lib/libpiston-a1b791b5-0.0.rlib
 
 all: piston;
