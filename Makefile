@@ -6,6 +6,7 @@ settings = --cfg gl --cfg sdl2
 target = $(shell rustc --version 2> /dev/null | awk "/host:/ { print \$$2 }")
 
 gl_rs_path=$(shell pwd)/gl-rs
+hgl_rs_path=$(shell pwd)/hgl-rs
 glfw_rs_path=$(shell pwd)/glfw-rs
 rust_graphics_path=$(shell pwd)/rust-graphics
 rust_image_path=$(shell pwd)/rust-image
@@ -18,6 +19,7 @@ piston_path=$(shell pwd)/piston
 symlinks_path=$(shell pwd)/piston-symlinks
 
 gl_rs=$(gl_rs_path)/target/$(target)/lib/libgl-8febb75e-0.1.rlib
+hgl_rs=$(hgl_rs_path)/target/$(target)/lib/libhgl-1a7d2676-0.0.1.rlib
 glfw_rs=$(glfw_rs_path)/target/$(target)/lib/libglfw-38369174-0.1.rlib
 rust_graphics=$(rust_graphics_path)/target/$(target)/lib/libgraphics-587c2edd-0.0.rlib
 rust_image=$(rust_image_path)/target/$(target)/lib/libimage-42438c15-0.0.rlib
@@ -34,13 +36,21 @@ all: piston;
 	@echo "--- Removing symlinks if they exist ---"
 	rm -f $(symlinks_path)/*
 	@echo "--- Linking libs ---"
-	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(rust_portaudio) $(piston) $(symlinks_path)
+	ln -s $(gl_rs) $(hgl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(rust_portaudio) $(piston) $(symlinks_path)
 
 gl_rs: $(gl_rs)
 
 $(gl_rs):
 	@echo "--- Building gl-rs ---"
 	cd $(gl_rs_path); $(MAKE)
+
+hgl_rs: $(hgl_rs)
+
+$(hgl_rs): $(gl_rs)
+	@echo "--- Building hgl-rs ---"
+	rm -f $(hgl_rs_path)/target/$(target)/lib/*.rlib
+	ln -s $(gl_rs) $(hgl_rs_path)/target/$(target)/lib/
+	cd $(hgl_rs_path); $(MAKE)
 
 glfw_rs: $(glfw_rs)
 
@@ -102,16 +112,17 @@ $(rust_portaudio):
 
 piston: $(piston)
 
-$(piston): gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf;
+$(piston): gl_rs hgl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust_sdl2_ttf;
 	@echo "--- Building piston ---"
 	rm -f $(piston_path)/target/$(target)/lib/*.rlib
 	mkdir -p $(piston_path)/target/$(target)/lib/
-	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(rust_portaudio) $(piston_path)/target/$(target)/lib/
+	ln -s $(gl_rs) $(hgl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(rust_portaudio) $(piston_path)/target/$(target)/lib/
 	cd $(piston_path); $(MAKE) clean; $(MAKE) COMPILER_FLAGS+="$(settings)"
 
 clean:
 	@echo "--- cleaning up ---"
 	cd $(gl_rs_path); $(MAKE) clean; cd -;
+	cd $(hgl_rs_path); $(MAKE) clean; cd -;
 	cd $(glfw_rs_path); $(MAKE) clean; cd -;
 	cd $(rust_graphics_path); $(MAKE) clean; cd -;
 	cd $(rust_image_path); $(MAKE) clean; cd -;
