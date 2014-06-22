@@ -13,6 +13,7 @@ fi
 CGMATH_RS_RLIB=libcgmath-13b4a6e6-0.1.rlib
 PISTON_RLIB=libpiston-a1b791b5-0.0.rlib
 GL_RS_RLIB=libgl-8febb75e-0.1.rlib
+HGL_RS_RLIB=libhgl-1a7d2676-0.0.1.rlib
 GLFW_RS_RLIB=libglfw-38369174-0.1.rlib
 RUST_GRAPHICS_RLIB=libgraphics-587c2edd-0.0.rlib
 RUST_IMAGE_RLIB=libimage-42438c15-0.0.rlib
@@ -34,6 +35,7 @@ echo $CURRENT_DIR
 CGMATH_RS_RLIB_PATH="$CURRENT_DIR/cgmath-rs/lib/$CGMATH_RS_RLIB"
 RUST_PORTAUDIO_RLIB_PATH="$CURRENT_DIR/rust-portaudio/target/$TARGET/lib/$RUST_PORTAUDIO_RLIB"
 GL_RS_RLIB_PATH="$CURRENT_DIR/gl-rs/target/$TARGET/lib/$GL_RS_RLIB"
+HGL_RS_RLIB_PATH="$CURRENT_DIR/hgl-rs/target/$TARGET/lib/$HGL_RS_RLIB"
 GLFW_RS_RLIB_PATH="$CURRENT_DIR/glfw-rs/target/$TARGET/lib/$GLFW_RS_RLIB"
 RUST_GRAPHICS_RLIB_PATH="$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
 RUST_IMAGE_RLIB_PATH="$CURRENT_DIR/rust-image/target/$TARGET/lib/$RUST_IMAGE_RLIB"
@@ -135,6 +137,8 @@ rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_PORTAUDIO_RLIB"
 ln -s $RUST_PORTAUDIO_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_PORTAUDIO_RLIB"
 rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$GL_RS_RLIB"
+rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$HGL_RS_RLIB"
+ln -s $HGL_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$HGL_RS_RLIB"
 rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$GLFW_RS_RLIB"
 ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$GLFW_RS_RLIB"
 rm -f "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_GRAPHICS_RLIB"
@@ -162,6 +166,8 @@ rm -f "$CURRENT_DIR/piston-symlinks/$RUST_PORTAUDIO_RLIB"
 ln -s $RUST_PORTAUDIO_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_PORTAUDIO_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
 ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GL_RS_RLIB"
+rm -f "$CURRENT_DIR/piston-symlinks/$HGL_RS_RLIB"
+ln -s $HGL_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$HGL_RS_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
 ln -s $GLFW_RS_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$GLFW_RS_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$RUST_GRAPHICS_RLIB"
