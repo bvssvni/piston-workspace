@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# gl = Graphics back-end
+# glfw = Window back-end
+# sdl2 = Window back-end
+SETTINGS="--cfg gl --cfg sdl2"
+
 MAKE=make
 if [ "$OS" == "Windows_NT" ]; then
 	MAKE=mingw32-make
@@ -39,16 +44,29 @@ PISTON_RLIB_PATH="$CURRENT_DIR/piston/target/$TARGET/lib/$PISTON_RLIB"
 
 # ==== BUILDING ====
 
-echo "--- Building rust-graphics"
-cd rust-graphics
-$MAKE clean
-$MAKE
+echo "--- Building gl-rs"
+cd gl-rs
+$MAKE -f rust-empty.mk clean
+$MAKE gen-lib && $MAKE -f rust-empty.mk
 cd $CURRENT_DIR
 
 echo "--- Building rust-image"
 cd rust-image
 $MAKE clean
 $MAKE
+cd $CURRENT_DIR
+
+# Add symlinks to rust-graphics.
+mkdir -p rust-graphics/target/$TARGET/lib/
+rm -f "$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_IMAGE_RLIB"
+ln -s $RUST_IMAGE_RLIB_PATH "$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$RUST_IMAGE_RLIB"
+rm -f "$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$GL_RS_RLIB"
+ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$GL_RS_RLIB"
+
+echo "--- Building rust-graphics"
+cd rust-graphics
+$MAKE clean
+$MAKE COMPILER_FLAGS+="$SETTINGS"
 cd $CURRENT_DIR
 
 echo "--- Building cgmath-rs"
@@ -67,12 +85,6 @@ echo "--- Building glfw-rs"
 cd glfw-rs
 $MAKE clean
 $MAKE link && $MAKE -f rust-empty.mk
-cd $CURRENT_DIR
-
-echo "--- Building gl-rs"
-cd gl-rs
-$MAKE -f rust-empty.mk clean
-$MAKE gen-lib && $MAKE -f rust-empty.mk
 cd $CURRENT_DIR
 
 echo "--- Building rust-sdl2"
@@ -139,7 +151,7 @@ ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL
 echo "--- Building piston"
 cd piston
 $MAKE clean
-$MAKE
+$MAKE COMPILER_FLAGS+="$SETTINGS"
 cd $CURRENT_DIR
 
 # Add symlinks to piston-symlinks.
@@ -164,3 +176,4 @@ rm -f "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_TTF_RLIB"
 ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$RUST_SDL2_TTF_RLIB"
 rm -f "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
 ln -s $PISTON_RLIB_PATH "$CURRENT_DIR/piston-symlinks/$PISTON_RLIB"
+

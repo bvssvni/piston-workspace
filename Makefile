@@ -1,3 +1,8 @@
+# gl = OpenGL back-end
+# gflw = Window back-end
+# sdl2 = Window back-end
+settings = --cfg gl --cfg sdl2
+
 target = $(shell rustc --version 2> /dev/null | awk "/host:/ { print \$$2 }")
 
 gl_rs_path=$(shell pwd)/gl-rs
@@ -45,9 +50,13 @@ $(glfw_rs):
 
 rust_graphics: $(rust_graphics)
 
-$(rust_graphics):
+$(rust_graphics): $(gl_rs) $(rust_image)
 	@echo "--- Building rust-graphics ---"
-	cd $(rust_graphics_path); $(MAKE)
+	rm -f $(rust_graphics_path)/target/$(target)/lib/*.rlib
+	mkdir -p $(rust_graphics_path)/target/$(target)/lib/
+	ln -s $(gl_rs) $(rust_graphics_path)/target/$(target)/lib/
+	ln -s $(rust_image) $(rust_graphics_path)/target/$(target)/lib/
+	cd $(rust_graphics_path); $(MAKE) COMPILER_FLAGS+="$(settings)"
 
 rust_image: $(rust_image)
 
@@ -98,7 +107,7 @@ $(piston): gl_rs glfw_rs rust_graphics rust_image rust_sdl2 rust_sdl2_mixer rust
 	rm -f $(piston_path)/target/$(target)/lib/*.rlib
 	mkdir -p $(piston_path)/target/$(target)/lib/
 	ln -s $(gl_rs) $(glfw_rs) $(rust_graphics) $(rust_image) $(rust_sdl2) $(rust_sdl2_mixer) $(rust_sdl2_ttf) $(cgmath_rs) $(rust_portaudio) $(piston_path)/target/$(target)/lib/
-	cd $(piston_path); $(MAKE) clean; $(MAKE) lib
+	cd $(piston_path); $(MAKE) clean; $(MAKE) COMPILER_FLAGS+="$(settings)"
 
 clean:
 	@echo "--- cleaning up ---"
