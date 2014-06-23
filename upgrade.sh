@@ -3,6 +3,10 @@
 CURRENT_DIR=$(pwd)
 echo $CURRENT_DIR
 
+echo "--- updating piston-workspace"
+git checkout master
+git pull origin master
+
 echo "--- updating cgmath-rs"
 cd cgmath-rs
 git checkout master
