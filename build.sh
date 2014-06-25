@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# gl = Graphics back-end
-# glfw = Window back-end
-# sdl2 = Window back-end
-SETTINGS="--cfg gl --cfg sdl2"
-
 MAKE=make
 if [ "$OS" == "Windows_NT" ]; then
 	MAKE=mingw32-make
@@ -67,8 +62,7 @@ ln -s $GL_RS_RLIB_PATH "$CURRENT_DIR/rust-graphics/target/$TARGET/lib/$GL_RS_RLI
 
 echo "--- Building rust-graphics"
 cd rust-graphics
-$MAKE clean
-$MAKE COMPILER_FLAGS+="$SETTINGS"
+./build.sh
 cd $CURRENT_DIR
 
 echo "--- Building cgmath-rs"
@@ -154,8 +148,7 @@ ln -s $RUST_SDL2_TTF_RLIB_PATH "$CURRENT_DIR/piston/target/$TARGET/lib/$RUST_SDL
 
 echo "--- Building piston"
 cd piston
-$MAKE clean
-$MAKE COMPILER_FLAGS+="$SETTINGS"
+./build.sh
 cd $CURRENT_DIR
 
 # Add symlinks to piston-symlinks.
